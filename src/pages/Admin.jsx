@@ -1,6 +1,10 @@
+import React from 'react'
+import AdminList from '../components/AdminList'
 const admin = () => {
   return (
-    <div>admin</div>
+    <div>
+      <AdminList />
+    </div>
   )
 }
 export default admin
