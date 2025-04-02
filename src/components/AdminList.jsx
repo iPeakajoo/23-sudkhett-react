@@ -39,13 +39,11 @@ const AdminList = () => {
     console.log("Data to submit:", data);
     try {
         if (data.id) {
-            console.log(`Updating member with ID: ${data.id}`);
             const response = await axios.put(`${API_URL}/${data.id}`, data, {
               headers: { "Content-Type": "application/json" }
             });
             console.log("API Response:", response.data);
         } else {
-            console.log("Creating new member");
             const response = await axios.post(API_URL, data, {
               headers: { "Content-Type": "application/json" }
             });
@@ -74,7 +72,6 @@ const AdminList = () => {
             key={editingMember?.id || "new"}
             onSubmit={handleSubmit}
             initialData={editingMember || {}}
-            onCancel={() => setEditingMember(null)}
           />
         </div>
       </div>
