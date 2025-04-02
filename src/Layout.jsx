@@ -10,9 +10,7 @@ const Layout = () => {
     <div className="min-h-screen bg-gray-100 flex flex-col">
      <Navbar />
 
-      <div className="p-6 mx-auto w-full">
-        <Outlet />
-      </div>
+      
       <Footer />
     </div>
   );
