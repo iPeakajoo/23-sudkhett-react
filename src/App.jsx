@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import User from "./pages/User";
 import Admin from "./pages/Admin";
 import Owner from "./pages/Owner";
+import Admin1 from "./pages/Admin1";
 
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
           { path: "/", element: <Home /> },
           { path: "/user", element: <User /> },
           { path: "/admin", element: <Admin /> },
+          { path: "/admin1", element: <Admin1 /> },
           { path: "/owner", element: <Owner /> },
     
       ],

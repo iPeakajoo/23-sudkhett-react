@@ -24,6 +24,13 @@ const Hero = () => {
             </button>
           </Link>
         </li>
+        <li>
+          <Link to="/admin1" className="hover:text-yellow-400">
+            <button className="px-8 py-4 bg-teal-500 text-white rounded-md hover:bg-teal-700 transition cursor-pointer text-xl">
+              Admin1 Home Section
+            </button>
+          </Link>
+        </li>
       </ul>
     </div>
 
