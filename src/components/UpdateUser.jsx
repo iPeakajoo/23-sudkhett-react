@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function UpdateUser({ onSubmit, initialData = {}, onCancel }) {
+function UpdateUser({ onSubmit, initialData = {} }) {
   const [name, setName] = useState(initialData.name || "");
   const [lastname, setLastname] = useState(initialData.lastname || "");
   const [position, setPosition] = useState(initialData.position || "");
@@ -8,15 +8,15 @@ function UpdateUser({ onSubmit, initialData = {}, onCancel }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!name || !lastname || !position) {
-      alert("Please fill all fields!");
+      alert("กรุณากรอกข้อมูลให้ครบถ้วน");
       return;
     }
     onSubmit({ name, lastname, position, id: initialData.id });
   };
 
   return (
-    <div className="p-4 mb-4  rounded shadow">
-      <h2 className="text-lg font-bold mb-2">{initialData.id ? "Edit Member" : "Create Member"}</h2>
+    <div className="p-4 mb-4 ">
+      
       <form onSubmit={handleSubmit} className="space-y-2">
       <input
         type="text"

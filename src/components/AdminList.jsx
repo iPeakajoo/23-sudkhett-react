@@ -25,7 +25,7 @@ const AdminList = () => {
     if (!window.confirm("คุณต้องการลบสมาชิก?")) return;
 
     try {
-      await axios.delete(`${API_URL}/${id}`);
+      await axios.delete(`https://jsd5-mock-backend.onrender.com/member/${id}`);
       setMembers(members.filter((member) => member.id !== id));
     } catch (error) {
       console.error(
@@ -36,18 +36,28 @@ const AdminList = () => {
   };
 
   const handleSubmit = async (data) => {
+    console.log("Data to submit:", data);
     try {
-      if (data.id) {
-        await axios.put(`${API_URL}/${data.id}`, data);
-      } else {
-        await axios.post(API_URL, data);
-      }
-      setEditingMember(null);
-      fetchMembers();
+        if (data.id) {
+            console.log(`Updating member with ID: ${data.id}`);
+            const response = await axios.put(`${API_URL}/${data.id}`, data, {
+              headers: { "Content-Type": "application/json" }
+            });
+            console.log("API Response:", response.data);
+        } else {
+            console.log("Creating new member");
+            const response = await axios.post(API_URL, data, {
+              headers: { "Content-Type": "application/json" }
+            });
+            console.log("API Response:", response.data);
+        }
+        setEditingMember(null);
+        fetchMembers();
     } catch (error) {
-      console.error("Error updating/creating member:", error);
+        console.error("Error updating/creating member:", error.response ? error.response.data : error.message);
     }
-  };
+};
+
 
   const handleEdit = (member) => {
     setEditingMember(member);
@@ -55,15 +65,19 @@ const AdminList = () => {
 
   return (
     <>
-      {editingMember ? (
-        <UpdateUser
-          onSubmit={handleSubmit}
-          initialData={editingMember}
-          onCancel={() => setEditingMember(null)}
-        />
-      ) : (
-        <UpdateUser onSubmit={handleSubmit} />
-      )}
+      <div className="p-6">
+        <div className="mb-6 p-4 bg-white shadow rounded">
+          <h2 className="text-xl font-bold mb-2">
+            {editingMember ? "Edit Member" : "Create Member"}
+          </h2>
+          <UpdateUser
+            key={editingMember?.id || "new"}
+            onSubmit={handleSubmit}
+            initialData={editingMember || {}}
+            onCancel={() => setEditingMember(null)}
+          />
+        </div>
+      </div>
       <div className="p-4">
         <h1 className="text-2xl font-bold mb-4">Members List</h1>
         <table className="w-full border-collapse border border-gray-300">
