@@ -17,10 +17,10 @@ const UserList = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-xl font-bold mb-4">Members List</h1>
+      <h1 className="text-2xl font-bold mb-4">Members List</h1>
       <table className="w-full border-collapse border border-gray-300">
         <thead>
-          <tr className="bg-gray-200">
+          <tr className="bg-teal-500 text-white">
             <th className="border border-gray-300 p-2">Name</th>
             <th className="border border-gray-300 p-2">Last Name</th>
             <th className="border border-gray-300 p-2">Position</th>
