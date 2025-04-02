@@ -1,20 +1,34 @@
+import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
+import Layout from "./Layout";
+import Home from "./pages/Home";
+import User from "./pages/User";
+import Admin from "./pages/Admin";
+import Owner from "./pages/Owner";
+
+
 export default function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+        element: <Layout />, // Parent route element
+        children: [ // Nested routes
+          { path: "/", element: <Home /> },
+          { path: "/user", element: <User /> },
+          { path: "/admin", element: <Admin /> },
+          { path: "/owner", element: <Owner /> },
+    
+      ],
+    }
+  ]);    
+  
+
+  
+  
+
   return (
-    <div className="h-screen flex justify-center bg-blue-950">
-      <div className="p-6 gap-y-6 flex flex-col justify-start w-[80%] lg:w-[70%]">
-        <h1 className="w-full p-6 bg-amber-100 font-extrabold">
-          React App Starter
-        </h1>
-        <section className="w-full p-5 bg-amber-100 flex">
-          <ul className="list-inside list-disc flex-1">
-            <span className="font-semibold">Tech Stack:</span>
-            <li>Vite</li>
-            <li>React</li>
-            <li>JavaScript</li>
-            <li>Tailwind</li>
-          </ul>
-        </section>
-      </div>
-    </div>
+    <>
+      <RouterProvider router={router} />
+    </>
   );
 }
+
